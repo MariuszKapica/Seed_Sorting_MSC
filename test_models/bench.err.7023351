@@ -1,0 +1,36 @@
+2021-09-08 03:53:08.481163: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2021-09-08 03:53:08.481205: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2021-09-08 03:53:37.541629: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2021-09-08 03:53:37.541675: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2021-09-08 03:53:37.541705: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (scs0070): /proc/driver/nvidia/version does not exist
+2021-09-08 03:53:37.542183: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Traceback (most recent call last):
+  File "/home/a.mak80/.conda/envs/tfod/lib/python3.9/site-packages/tensorflow/python/training/py_checkpoint_reader.py", line 96, in NewCheckpointReader
+    return CheckpointReader(compat.as_bytes(filepattern))
+RuntimeError: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for /lustrehome/home/a.mak80/Tensorflow/workspace/models/faster_rcnn_resnet101_v1_1024x1024_coco17_tpu-8/ckpt-187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/a.mak80/.conda/envs/tfod/lib/python3.9/site-packages/tensorflow/python/training/tracking/util.py", line 2335, in restore
+    status = self.read(save_path, options=options)
+  File "/home/a.mak80/.conda/envs/tfod/lib/python3.9/site-packages/tensorflow/python/training/tracking/util.py", line 2220, in read
+    result = self._saver.restore(save_path=save_path, options=options)
+  File "/home/a.mak80/.conda/envs/tfod/lib/python3.9/site-packages/tensorflow/python/training/tracking/util.py", line 1338, in restore
+    reader = py_checkpoint_reader.NewCheckpointReader(save_path)
+  File "/home/a.mak80/.conda/envs/tfod/lib/python3.9/site-packages/tensorflow/python/training/py_checkpoint_reader.py", line 100, in NewCheckpointReader
+    error_translator(e)
+  File "/home/a.mak80/.conda/envs/tfod/lib/python3.9/site-packages/tensorflow/python/training/py_checkpoint_reader.py", line 35, in error_translator
+    raise errors_impl.NotFoundError(None, None, error_message)
+tensorflow.python.framework.errors_impl.NotFoundError: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for /lustrehome/home/a.mak80/Tensorflow/workspace/models/faster_rcnn_resnet101_v1_1024x1024_coco17_tpu-8/ckpt-187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/a.mak80/test_models/4.load_model_check_on_image.py", line 25, in <module>
+    ckpt.restore(os.path.join(paths['checkpoint'], 'ckpt-187')).expect_partial() # path to checkpoint
+  File "/home/a.mak80/.conda/envs/tfod/lib/python3.9/site-packages/tensorflow/python/training/tracking/util.py", line 2337, in restore
+    raise errors_impl.NotFoundError(
+tensorflow.python.framework.errors_impl.NotFoundError: Failed to restore from checkpoint or SavedModel at /lustrehome/home/a.mak80/Tensorflow/workspace/models/faster_rcnn_resnet101_v1_1024x1024_coco17_tpu-8/ckpt-187: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for /lustrehome/home/a.mak80/Tensorflow/workspace/models/faster_rcnn_resnet101_v1_1024x1024_coco17_tpu-8/ckpt-187
+srun: error: scs0070: task 0: Exited with exit code 1
