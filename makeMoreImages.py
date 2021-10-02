@@ -4,7 +4,7 @@ from xml.etree import ElementTree as ET
 from uuid import uuid4
 
 
-def crop_files_move_boxes():
+def crop_files_move_boxes(directory, all_files):
     for one in all_files:
         try:
             one.index(".jpg")
@@ -27,8 +27,7 @@ def crop_files_move_boxes():
                 new_root.append(elem2)
 
                 elem3 = ET.Element("path")
-                elem3.text = str(directory + '\\' + file_name + '.jpg')
-                print(elem3.text)
+                elem3.text = os.path.join(directory, file_name, '.jpg')
                 new_root.append(elem3)
 
                 elem4 = ET.Element("source")
@@ -96,7 +95,7 @@ def crop_files_move_boxes():
             pass
 
 
-def create_one_seed_files_and_xml():
+def create_one_seed_files_and_xml(directory, all_files):
     for one in all_files:
         try:
             one.index(".xml")
@@ -129,7 +128,7 @@ def create_one_seed_files_and_xml():
                 new_root.append(elem2)
 
                 elem3 = ET.Element("path")
-                elem3.text = str(directory + '\\' + file_name + '.jpg')
+                elem3.text = os.path.join(directory, file_name, '.jpg')
                 new_root.append(elem3)
 
                 elem4 = ET.Element("source")
@@ -181,21 +180,18 @@ def create_one_seed_files_and_xml():
             pass
 
 
+def crop_images (directory, type):
+    print("Please copy the images to crop and their xml files into the Tensorflow/workspace/images/images_to_crop folder")
+    ans = input("Please type 'yes' or 'Yes' if the files are copied")
+    if ans == 'yes' or ans == 'Yes':
+        directory_main = directory
+        directory_string = os.path.join(directory_main, "Tensorflow", "workspace", "images", "images_to_crop")
+        os.chdir(directory_string)
+        all_files = os.listdir(directory_string)
+        if type == "table":
+            crop_files_move_boxes(directory_string, all_files)
+        if type == "single_seed":
+            create_one_seed_files_and_xml(directory_string, all_files)
 
-
-directory_main = os.getcwd()
-directory_string = str(directory_main + "\\Tensorflow\\workspace\\images\\test")
-os.chdir(directory_string)
-directory = os.getcwd()
-all_files = os.listdir()
-crop_files_move_boxes()
-create_one_seed_files_and_xml()
-
-directory_string = str(directory_main + "\\Tensorflow\\workspace\\images\\train")
-os.chdir(directory_string)
-directory = os.getcwd()
-all_files = os.listdir()
-crop_files_move_boxes()
-create_one_seed_files_and_xml()
 
 
