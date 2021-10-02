@@ -2,7 +2,7 @@ import os
 
 
 def open_annotation_program(directory):
-    label_img_path = os.path.join(directory, "Tensorflow", "labelImg")
+    label_img_path = os.path.join(directory, "Tensorflow", "labelimg")
     if os.path.isdir(label_img_path):
         os.chdir(label_img_path)
         os.system("python labelimg.py")

@@ -30,5 +30,6 @@ def train_selected_model(directory, model_name, type, form):
     if form == "loc":
         os.system(training_string)
     if form == "sbatch":
-        os.system("sbatch --gres gpu:1 anaconda3-launch -env conda_env " + training_string)
+        env = input("What is your name of virtual env")
+        os.system(f"sbatch --gres gpu:1 anaconda3-launch -env {env} " + training_string)
 

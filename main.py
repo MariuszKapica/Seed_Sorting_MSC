@@ -100,6 +100,8 @@ def menu():
 
 
 def main():
+    env = input("What is your name of virtual env")
+    os.system(f'conda activate {env}')
     while 1:
         menu()
 
