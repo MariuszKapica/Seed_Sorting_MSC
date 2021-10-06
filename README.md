@@ -1,4 +1,4 @@
-# Seed Sorting
+## Seed Sorting
 ## How to get all the dependencied to work with the project
 Install requirements:
 - Anaconda
