@@ -3,6 +3,7 @@ from xml.etree import ElementTree as ET
 
 
 def make_change(files, directory):
+    os.chdir(directory)
     for file in files:
         try:
             file.index(".xml")
@@ -20,7 +21,7 @@ def make_change(files, directory):
 
 def change_xml(directory):
     print("This part changes xml files in the appropriate test and train folders")
-    ans = int("Please type 'yes' or 'Yes' if you understand")
+    ans = input("Please type 'yes' or 'Yes' if you understand")
     if ans == 'yes' or ans == 'Yes':
         main_directory = directory
         test_dir = os.path.join(main_directory, 'Tensorflow', 'workspace', 'images', 'test')

@@ -101,6 +101,7 @@ def menu():
 
 def main():
     while 1:
+        os.chdir(project_directory)
         menu()
 
 
