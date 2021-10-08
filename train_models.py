@@ -23,8 +23,7 @@ def train_selected_model(directory, model_name, type, form):
             pass
     if type == 'cont':
         checkpoint_nr = int(last_checkpint[5:-6])
-        while checkpoint_nr * 1000 > number_steps_training:
-            number_steps_training *= 2
+        number_steps_training *= checkpoint_nr * 2000
 
     training_string = f'python {model_main_tf2} --model_dir={model_path} --pipeline_config_path={config_path} --num_train_steps={number_steps_training}'
     if form == "loc":
