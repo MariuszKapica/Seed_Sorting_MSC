@@ -6,7 +6,7 @@ from object_detection.utils import visualization_utils as viz_utils
 from object_detection.builders import model_builder
 from object_detection.utils import config_util
 import numpy as np
-from uuid import uuid4
+import datetime
 
 
 def test_selected_model(directory, model_name):
@@ -59,9 +59,10 @@ def test_selected_model(directory, model_name):
                 category_index,
                 use_normalized_coordinates=True,
                 max_boxes_to_draw=500,
-                min_score_thresh=.5,
+                min_score_thresh=.01,
                 agnostic_mode=False)
-            cv2.imwrite(os.path.join(directory, "tests", str(model_name + images_names[nr] + '.' + uuid4().int)), image_np_with_detections)
+            image_name = model_name + images_names[nr][:-4] + '.' + str(datetime.datetime.now()) + '.jpg'
+            cv2.imwrite(os.path.join(directory, "tests", image_name), image_np_with_detections)
     except Exception as e:
         print(e)
 
